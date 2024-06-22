@@ -2,7 +2,7 @@ import logging
 import os
 from aiogram import Bot, Dispatcher, executor, types
 from default_button import menu_keyboard, menu_detail_keyboard
-from inline_button import product_menu,
+from inline_button import product_menu
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,6 +31,11 @@ async def menu(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Product 1")
 async def menu_inline(message: types.Message):
     await message.reply("Product \n            >>>> ", reply_markup=product_menu)
+
+
+@dp.message_handler(lambda message: message.text == "Back")
+async def back(message: types.Message):
+    await message.reply("Menu \n            >>>> ", reply_markup=menu_keyboard)
 
 
 @dp.message_handler()

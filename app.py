@@ -1,7 +1,8 @@
-import logging
 import os
-from aiogram import Bot, Dispatcher, executor, types
+import logging
 from dotenv import load_dotenv
+from default_button import menu_keyboard
+from aiogram import Bot, Dispatcher, executor, types
 
 load_dotenv()
 
@@ -18,7 +19,7 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     username = message.from_user.username
-    await message.reply(f"Hello  @{username}")
+    await message.reply(f"Hello  @{username}",reply_markup=menu_keyboard)
 
 
 @dp.message_handler()
